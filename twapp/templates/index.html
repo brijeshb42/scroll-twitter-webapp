@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+	{% if message is defined and message != None %}
+	<p class="{{ message.type }}">{{ message.message }}</p>
+	{% endif %}
+	{% if session.access_token is defined %}
+		<a href="/tweets/1" class="big-button">Get Tweets</a>
+	{% else %}
+		<a href="{{ session.oauth_url }}" class="big-button">Authorize With Twitter</a>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+	{% if error is defined %}
+	<div class="error">{{ error }}</div>
+	{% elif statuses is defined %}
+		<a href="{{ url_for('get_tweets', page=page_num+1) }}" class="next-btn">Next Page</a>
+		{% for status in statuses %}
+			{% if status.entities.urls is defined and status.entities.urls|length > 0 %}
+			<div id="tweet-{{ status.id }}" class="tweet">
+				<div class="info">
+					<div class="img">
+						<a href="https://twitter.com/{{ status.user.screen_name }}" target="_blank">
+							<img src="{{ status.user.profile_image_url }}" alt="{{ status.user.screen_name }}">
+						</a>
+					</div>
+					<div class="meta">
+						<span><a target="_blank" href="https://twitter.com/{{ status.user.screen_name }}">@{{ status.user.screen_name }}</a>&nbsp;tweeted</span>
+						{% if status.retweet_count > 0 %}
+						<span><b>{{ status.retweet_count }}</b> RT</span>
+						{% endif %}
+						<time datetime="{{ status.created_at }}">on {{ status.created_at.strftime('%b %d %Y at %I:%m %p') }}</time>
+					</div>
+					<span class="goto-link"><a href="{{ status.entities.urls[0].expanded_url }}" target="_blank" title="Go to the link"></a></span>
+				</div>
+				<p class="text">{{ status.text }} <span class="datalink" title="Click here to get link details" data-url="{{ status.entities.urls[0].expanded_url }}" data-id="{{ status.id }}" data-fetched="0">[#]</span></p>
+				<div class="desc">
+					<h3 id="link-title-{{ status.id }}" class="utitle"></h3>
+					<p id="link-desc-{{ status.id }}" class="udesc"></p>
+				</div>
+			</div>
+			{% endif %}
+		{% endfor %}
+		<a href="{{ url_for('get_tweets', page=page_num+1) }}" class="next-btn">Next Page</a>
+		<div class="usage">
+			<p>Click on <a href="#">[#]</a> beside a tweet to fetch the title and description of the link in the tweet.</p>
+		</div>
+	{% endif %}
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}
