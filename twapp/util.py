@@ -1,3 +1,6 @@
+"""
+A utility module to simplify tweepy usage from within the flask app
+"""
 import tweepy
 from tweepy import Cursor
 import app_settings as cfg

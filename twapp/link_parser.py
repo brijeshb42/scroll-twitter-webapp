@@ -4,6 +4,10 @@ import re
 import urllib2
 import sys
 
+"""
+Retrieves content of a url and extracts title and meta description
+using BeautifulSoup.
+"""
 def get_data(link):
 	headers = {"Accept-Language": "en-US"}
 	typ = 'success'

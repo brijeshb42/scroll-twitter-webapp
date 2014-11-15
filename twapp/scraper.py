@@ -3,6 +3,9 @@ import link_parser as lp
 
 scraper_app = Blueprint('scraper',__name__)
 
+"""
+Endpoint to retrive title and description of a url and send a json response
+"""
 @scraper_app.route('/')
 def get_data():
 	url = request.args.get('url',None)

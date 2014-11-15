@@ -112,7 +112,7 @@ def callback():
 	return 'error'
 
 """
-Endpooint to retrieve 
+Endpooint to retrieve tweets after successful authorization. 
 """
 @app.route('/tweets')
 @app.route('/tweets/')
