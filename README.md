@@ -16,7 +16,8 @@ Every tweet has a link beside its content in the form of ```[#]```.
 
 On clicking this ```[#]```, the title and description of the link in the tweet is fetched from the server via an ajax call and shown below that particular tweet.
 
-For usage on your local system:
+## Local Usage
+
 * clone the repo
 * rename ```twapp/app_settings.py.settings``` to ```twapp/app_settings.py```
 * open ```twapp/app_settings.py```
